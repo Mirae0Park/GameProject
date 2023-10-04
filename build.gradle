@@ -47,6 +47,18 @@ dependencies {
     implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-java8time', version: '3.0.4.RELEASE'
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
     implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+    //h2가상 데이터베이스
+    implementation 'com.h2database:h2'
+
+    // https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect
+    implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '3.3.0'
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    //넘어오는 값 검증 : https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
 tasks.named('test') {
