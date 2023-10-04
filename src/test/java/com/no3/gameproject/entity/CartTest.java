@@ -38,10 +38,10 @@ public class CartTest {
     public Member createMember() {
         MemberFormDto memberFormDto = new MemberFormDto();
 
-        memberFormDto.setEmail("test@email.com");
-        memberFormDto.setName("홍길동");
-        memberFormDto.setAddress("서울시 마포구 합정동");
-        memberFormDto.setPassword("1234");
+        memberFormDto.setEmail("test123@email.com");
+        memberFormDto.setName("김기원");
+        memberFormDto.setAddress("서울시 마포구");
+        memberFormDto.setPassword("4321");
 
         return Member.createMember(memberFormDto, passwordEncoder);
 
