@@ -22,11 +22,12 @@ public class ItemImg extends BaseEntity{
 
     private String repimgYn; //대표 이미지 여부
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) // 매핑된 상품 엔티티 정보가 필요할 경우 데이터를 조회
     @JoinColumn(name = "item_id")
     private Item item;
 
     public void updateItemImg(String oriImgName, String imgName, String imgUrl){
+        // 원본 이미지 파일명, 업데이트할 이미지 파일명, 이미지 경로를 파라미터로 입력받아 이미지 정보를 업데이트
         this.oriImgName = oriImgName;
         this.imgName = imgName;
         this.imgUrl = imgUrl;
