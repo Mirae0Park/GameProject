@@ -2,6 +2,7 @@ package com.no3.gameproject.entity;
 
 import com.no3.gameproject.constant.ItemSellStatus;
 import com.no3.gameproject.dto.ItemFormDto;
+import com.no3.gameproject.exception.OutOfStockException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -47,4 +48,16 @@ public class Item extends BaseEntity {
         this.itemSellStatus = itemFormDto.getItemSellStatus();
     }
 
+    public void removeStock(int stockNumber){ // 상품을 주문할 경우 재고를 감소시킴
+        int restStock = this.stockNumber - stockNumber; // 상품의 재고 수량에서 주문 후 남은 재고 수량을 구함
+
+        if(restStock < 0){ // 상품의 재고가 주문 수량보다 작을 경우 재고 부족 예외를 발생시킴
+            throw new OutOfStockException("상품의 재고가 부족합니다. (현재 재고 수량 : " + this.stockNumber + ")");
+        }
+        this.stockNumber = restStock; // 주문 후 남은 재고 수량을 상품의 현재 재고 값으로 할당
+    }
+
+    public void addStock(int stockNumber){
+        this.stockNumber += stockNumber;
+    }
 }
