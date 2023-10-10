@@ -1,6 +1,7 @@
 package com.no3.gameproject.entity;
 
 import com.no3.gameproject.constant.ItemSellStatus;
+import com.no3.gameproject.dto.ItemFormDto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -38,5 +39,12 @@ public class Item extends BaseEntity {
     @Enumerated(EnumType.STRING)  // enum 타입 매핑
     private ItemSellStatus itemSellStatus; //상품 판매 상태
 
+    public void updateItem(ItemFormDto itemFormDto){
+        this.itemNm = itemFormDto.getItemNm();
+        this.price = itemFormDto.getPrice();
+        this.stockNumber = itemFormDto.getStockNumber();
+        this.itemDetail = itemFormDto.getItemDetail();
+        this.itemSellStatus = itemFormDto.getItemSellStatus();
+    }
 
 }

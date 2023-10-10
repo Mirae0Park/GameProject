@@ -3,6 +3,7 @@ package com.no3.gameproject.service;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.UUID;
 
@@ -23,5 +24,15 @@ public class FileService {
         fos.close();
 
         return savedFileName;
+    }
+
+    public void deleteFile(String filePath) throws Exception{
+        File deleteFile = new File(filePath);
+        if(deleteFile.exists()) {
+            deleteFile.delete();
+            log.info("파일을 삭제하였습니다.");
+        } else {
+            log.info("파일이 존재하지 않습니다.");
+        }
     }
 }

@@ -1,14 +1,19 @@
 package com.no3.gameproject.repository;
 
+import com.no3.gameproject.dto.ItemFormDto;
 import com.no3.gameproject.entity.Item;
+import com.no3.gameproject.service.ItemService;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-public interface ItemRepository extends JpaRepository<Item, Long>, QuerydslPredicateExecutor<Item>{
+public interface ItemRepository extends JpaRepository<Item, Long>, QuerydslPredicateExecutor<Item>, ItemRepositoryCustom{
     //JpaRepository<Item(엔티티 타입 클래스), Long(기본키 타입)>
     //JpaRepository는 기본적인 CRUD 및 페이징 처리를 위한 메소드 정의 되어있음
     /* QuerydslPredicateExecutor
@@ -30,8 +35,6 @@ public interface ItemRepository extends JpaRepository<Item, Long>, QuerydslPredi
 
     @Query(value = "select * from item i where i.item_detail like %:itemDetail% order by i.price desc", nativeQuery = true)
     List<Item> findByItemDetailByNative(@Param("itemDetail") String itemDetail);
-
-
 
 
 }
