@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "cart")
 @Getter @Setter
 @ToString
-public class Cart{ // extends BaseEntity
+public class Cart extends BaseEntity{
 
     @Id
     @Column(name = "cart_id")
