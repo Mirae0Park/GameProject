@@ -24,20 +24,20 @@
             $("input[name=cartChkBox]:checked").each(function() {
                 var cartItemId = $(this).val();
                 var price = $("#price_" + cartItemId).attr("data-price");
-                orderTotalPrice = price;
+
+                orderTotalPrice += parseInt(price);
             });
 
             $("#orderTotalPrice").html(orderTotalPrice+'원');
         }
 
         function changeCount(obj){
-            var count = obj.value;
             var cartItemId = obj.id.split('_')[1];
             var price = $("#price_" + cartItemId).data("price");
-            var totalPrice = count*price;
+            var totalPrice = price;
             $("#totalPrice_" + cartItemId).html(totalPrice+"원");
             getOrderTotalPrice();
-            updateCartItemCount(cartItemId, count);
+            updateCartItemCount(cartItemId);
         }
 
         function checkAll(){
@@ -231,9 +231,6 @@
                                       th:data-price="${cartItem.price}"
                                       th:text="${cartItem.price} + '원'" class="align-self-center mr-2">
                                 </span>
-                                <input type="number" name="count" th:id="'count_' + ${cartItem.cartItemId}"
-                                       th:value="${cartItem.count}" min="1"
-                                       onchange="changeCount(this)" class="form-control mr-2" >
                                 <button type="button" class="close" aria-label="Close">
                                     <span aria-hidden="true" th:data-id="${cartItem.cartItemId}" onclick="deleteCartItem(this)">&times;</span>
                                 </button>
@@ -243,7 +240,7 @@
                 </td>
                 <td class="text-center align-middle">
                     <span th:id="'totalPrice_' + ${cartItem.cartItemId}"
-                          name="totalPrice" th:text="${cartItem.price * cartItem.count} + '원'">
+                          name="totalPrice" th:text="${cartItem.price} + '원'">
                     </span>
                 </td>
             </tr>
