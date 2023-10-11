@@ -14,10 +14,6 @@
         $(document).ready(function(){
 
             calculateTotalPrice();
-
-            $("#count").change( function(){
-                calculateTotalPrice();
-            });
         });
 
         function calculateTotalPrice(){
@@ -33,7 +29,6 @@
             var url = "/order";
             var paramData = {
                 itemId : $("#itemId").val(),
-                count : $("#count").val()
             };
 
             var param = JSON.stringify(paramData);
