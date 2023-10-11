@@ -13,17 +13,16 @@
     <script th:inline="javascript">
         $(document).ready(function(){
 
-            calculateToalPrice();
+            calculateTotalPrice();
 
             $("#count").change( function(){
-                calculateToalPrice();
+                calculateTotalPrice();
             });
         });
 
-        function calculateToalPrice(){
-            var count = $("#count").val();
+        function calculateTotalPrice(){
             var price = $("#price").val();
-            var totalPrice = price*count;
+            var totalPrice = price;
             $("#totalPrice").html(totalPrice + '원');
         }
 
@@ -73,8 +72,7 @@
 
             var url = "/cart";
             var paramData = {
-                itemId : $("#itemId").val(),
-                count : $("#count").val()
+                itemId : $("#itemId").val()
             };
 
             var param = JSON.stringify(paramData);

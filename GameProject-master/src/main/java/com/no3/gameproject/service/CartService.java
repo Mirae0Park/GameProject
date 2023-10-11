@@ -47,10 +47,9 @@ public class CartService {
         CartItem savedCartItem = cartItemRepository.findByCartIdAndItemId(cart.getId(), item.getId());
 
         if(savedCartItem != null){
-            savedCartItem.addCount(cartItemDto.getCount());
             return savedCartItem.getId();
         } else {
-            CartItem cartItem = CartItem.createCartItem(cart, item, cartItemDto.getCount());
+            CartItem cartItem = CartItem.createCartItem(cart, item);
             cartItemRepository.save(cartItem);
             return cartItem.getId();
         }
@@ -85,13 +84,6 @@ public class CartService {
         return true;
     }
 
-    public void updateCartItemCount(Long cartItemId, int count){
-        CartItem cartItem = cartItemRepository.findById(cartItemId)
-                .orElseThrow(EntityNotFoundException::new);
-
-        cartItem.updateCount(count);
-    }
-
     public void deleteCartItem(Long cartItemId) {
         CartItem cartItem = cartItemRepository.findById(cartItemId)
                 .orElseThrow(EntityNotFoundException::new);
@@ -108,7 +100,6 @@ public class CartService {
 
             OrderDto orderDto = new OrderDto();
             orderDto.setItemId(cartItem.getItem().getId());
-            orderDto.setCount(cartItem.getCount());
             orderDtoList.add(orderDto);
         }
 
