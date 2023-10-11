@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-public class Item extends BaseEntity {
+public class Item extends BaseEntity { //
 
     @Id //테이블에 기본키로 사용(pk)
     @Column(name="item_id") //필드와 컬럼 매핑
